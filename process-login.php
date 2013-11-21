@@ -14,10 +14,12 @@ try{
 
 	if($person->num_rows == 1) {
 		$user = $person->fetch_object();
-	
+
 		$_SESSION["loggedIn"] = TRUE;
 		$_SESSION["username"] = $user->username;
 		$_SESSION["person_id"] = $user->id;
+
+		print_r($_SESSION);
 	}
 	echo '<pre>$_POST contains: ';
 		print_r($_POST);
