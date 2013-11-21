@@ -8,8 +8,17 @@ try{
 	
 	$username = $_POST['username'];
 	$password = $_POST['password'];
+	$passwordMd5 = md5($password);
 	
+	$person = $db->query("SELECT * FROM person WHERE username='$username' AND passwordMd5='$passwordMd5'");
+
+	if($person->num_rows == 1) {
+		$user = $person->fetch_object();
 	
+		$_SESSION["loggedIn"] = TRUE;
+		$_SESSION["username"] = $user->username;
+		$_SESSION["person_id"] = $user->id;
+	}
 	echo '<pre>$_POST contains: ';
 		print_r($_POST);
 	echo '</pre>';
