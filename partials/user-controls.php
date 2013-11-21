@@ -1,4 +1,9 @@
 <?php
 
-// Always show the login form.
-require('partials/login.php');
+if(isset($_SESSION['loggedIn'])) {
+	require('partials/logout.php');
+} else {
+	require('partials/login.php');
+}
+
+?>
